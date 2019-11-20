@@ -1,8 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-// import Header from '../../components/Header';
-
 // import { Container } from './styles';
 
 export default function Cart() {
@@ -12,7 +10,3 @@ export default function Cart() {
     </View>
   );
 }
-
-// Cart.navigationOptions = {
-//   headerTitle: () => <Header />,
-// };

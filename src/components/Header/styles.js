@@ -15,3 +15,7 @@ export const Logo = styled.Image`
   width: 200px;
   height: 25px;
 `;
+
+export const Home = styled.Button`
+  background: #eee;
+`;
