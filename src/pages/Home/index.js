@@ -4,6 +4,8 @@ import { Text, Button } from 'react-native';
 
 import { Container } from './styles';
 
+// import Header from '../../components/Header';
+
 export default class Home extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
@@ -32,6 +34,6 @@ export default class Home extends Component {
   }
 }
 
-Home.navigationOptions = {
-  title: 'Rocketshoes',
-};
+// Home.navigationOptions = {
+//   headerTitle: () => <Header />,
+// };
