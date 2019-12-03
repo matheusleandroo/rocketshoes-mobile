@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, FlatList } from 'react-native';
+import { formatPrice } from '../../util/format';
+import api from '../../services/api';
 
 import {
   Container,
@@ -17,29 +19,7 @@ import {
 
 export default class Home extends Component {
   state = {
-    products: [
-      {
-        id: 1,
-        title: 'Tênis de Caminhada Leve Confortável',
-        price: 179.9,
-        image:
-          'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-      },
-      {
-        id: 2,
-        title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
-        price: 139.9,
-        image:
-          'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
-      },
-      {
-        id: 3,
-        title: 'Tênis Adidas Duramo Lite 2.0',
-        price: 219.9,
-        image:
-          'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis3.jpg',
-      },
-    ],
+    products: [],
   };
 
   static propTypes = {
@@ -47,6 +27,17 @@ export default class Home extends Component {
       navigate: PropTypes.func,
     }).isRequired,
   };
+
+  async componentDidMount() {
+    const response = await api.get('products');
+
+    const data = response.data.map(product => ({
+      ...product,
+      priceFormatted: formatPrice(product.price),
+    }));
+
+    this.setState({ products: data });
+  }
 
   handleNavigate = () => {
     const { navigation } = this.props;
@@ -66,7 +57,7 @@ export default class Home extends Component {
             <ProductList>
               <ProductImage source={{ uri: item.image }} />
               <ProductTitle>{item.title}</ProductTitle>
-              <ProductPrice>R$ {item.price}</ProductPrice>
+              <ProductPrice>{item.priceFormatted}</ProductPrice>
               <ButtonContainer>
                 <ButtonIcon>
                   <IconShoppingCart name="shopping-cart" />
