@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Button, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { formatPrice } from '../../util/format';
 import api from '../../services/api';
 
@@ -22,12 +21,6 @@ export default class Home extends Component {
     products: [],
   };
 
-  static propTypes = {
-    navigation: PropTypes.shape({
-      navigate: PropTypes.func,
-    }).isRequired,
-  };
-
   async componentDidMount() {
     const response = await api.get('products');
 
@@ -38,12 +31,6 @@ export default class Home extends Component {
 
     this.setState({ products: data });
   }
-
-  handleNavigate = () => {
-    const { navigation } = this.props;
-
-    navigation.navigate('Cart');
-  };
 
   render() {
     const { products } = this.state;
@@ -67,12 +54,6 @@ export default class Home extends Component {
               </ButtonContainer>
             </ProductList>
           )}
-        />
-        <Button
-          title="Go to Card"
-          onPress={() => {
-            this.handleNavigate();
-          }}
         />
       </Container>
     );

@@ -1,3 +1,4 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -14,14 +15,13 @@ const Routes = createAppContainer(
     },
     {
       headerBackTitleVisible: false,
-      defaultNavigationOptions: {
-        headerTitle: Header,
+      defaultNavigationOptions: navigation => ({
+        headerTitle: <Header {...navigation} />,
         headerStyle: {
           backgroundColor: '#191920',
         },
-        headerTintColor: 'red',
         headerLeft: null,
-      },
+      }),
     }
   )
 );

@@ -1,16 +1,31 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container, Logo } from './styles';
+import {
+  Container,
+  LogoContainer,
+  LogoImage,
+  BasketContainer,
+  ItemCount,
+} from './styles';
 
-import logo from '../../assets/images/logo.png';
-
-export default function Header() {
+export default function Header({ navigation }) {
   return (
     <Container>
-      <Logo source={logo} />
-      <Icon name="shopping-basket" size={25} color="#FFF" />
+      <LogoContainer onPress={() => navigation.navigate('Home')}>
+        <LogoImage />
+      </LogoContainer>
+      <BasketContainer onPress={() => navigation.navigate('Cart')}>
+        <Icon name="shopping-basket" color="#FFF" size={24} />
+        <ItemCount>0</ItemCount>
+      </BasketContainer>
     </Container>
   );
 }
+
+Header.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};

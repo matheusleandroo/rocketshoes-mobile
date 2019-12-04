@@ -1,12 +1,33 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { Component } from 'react';
 
-// import { Container } from './styles';
+import { Container, CartList } from './styles';
 
-export default function Cart() {
-  return (
-    <View>
-      <Text>Cart</Text>
-    </View>
-  );
+import { formatPrice } from '../../util/format';
+import api from '../../services/api';
+
+export default class Cart extends Component {
+  state = {
+    products: [],
+  };
+
+  async componentDidMount() {
+    const response = await api.get('products');
+
+    const data = response.data.map(product => ({
+      ...product,
+      priceFormatted: formatPrice(product.price),
+    }));
+
+    this.setState({ products: data });
+  }
+
+  render() {
+    const { products } = this.state;
+
+    return (
+      <Container>
+        <CartList />
+      </Container>
+    );
+  }
 }
