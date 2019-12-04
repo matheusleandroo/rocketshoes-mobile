@@ -41,7 +41,7 @@ export default class Home extends Component {
           data={products}
           keyExtractor={product => product.id.toString()}
           renderItem={({ item }) => (
-            <ProductList>
+            <ProductList key={item.id}>
               <ProductImage source={{ uri: item.image }} />
               <ProductTitle>{item.title}</ProductTitle>
               <ProductPrice>{item.priceFormatted}</ProductPrice>
