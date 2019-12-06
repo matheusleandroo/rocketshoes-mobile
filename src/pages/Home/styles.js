@@ -41,7 +41,7 @@ export const ProductPrice = styled.Text`
   margin: 5px 0 20px;
 `;
 
-export const ButtonContainer = styled.View`
+export const ButtonContainer = styled.TouchableOpacity`
   flex: 0.17;
   flex-direction: row;
   height: 10px;
