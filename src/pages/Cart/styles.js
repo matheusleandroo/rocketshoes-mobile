@@ -11,7 +11,7 @@ export const CartList = styled.View`
   background: #ffff;
   border-radius: 4px;
   padding: 10px;
-  min-height: 320px;
+  min-height: 370px;
 `;
 
 export const ProductInfo = styled.View`
@@ -51,4 +51,64 @@ export const ProductOptions = styled.View`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 20px;
+  max-height: 60px;
+`;
+
+export const ProductActionsTouch = styled.TouchableOpacity``;
+
+export const ProductActions = styled.View`
+  flex-direction: row;
+  height: 30px;
+`;
+
+export const ProductActionsInput = styled.TextInput`
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #666;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  margin: 0px 15px;
+`;
+
+export const ProductActionsPrice = styled.View`
+  height: 30px;
+`;
+
+export const ProductActionsPriceText = styled.Text`
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+export const TotalView = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const TotalTitle = styled.Text`
+  color: #999;
+  font-weight: bold;
+`;
+
+export const TotalPrice = styled.Text`
+  font-size: 28px;
+  margin-left: 5px;
+`;
+
+export const FinalizarBotao = styled.TouchableOpacity`
+  background-color: #7159c1;
+  border-radius: 4px;
+  width: 95%;
+  height: 50px;
+  margin: 25px 15px;
+  justify-content: center;
+`;
+
+export const FinalizarBotaoText = styled.Text`
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
 `;

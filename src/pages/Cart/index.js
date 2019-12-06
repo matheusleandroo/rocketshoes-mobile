@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
@@ -12,6 +11,16 @@ import {
   ProductPrice,
   ProductTrash,
   ProductOptions,
+  ProductActions,
+  ProductActionsTouch,
+  ProductActionsInput,
+  ProductActionsPrice,
+  ProductActionsPriceText,
+  TotalView,
+  TotalTitle,
+  TotalPrice,
+  FinalizarBotao,
+  FinalizarBotaoText,
 } from './styles';
 
 export default class Cart extends Component {
@@ -40,13 +49,30 @@ export default class Cart extends Component {
               <ProductPrice>R${products[0].price}0</ProductPrice>
             </ProductDetails>
             <ProductTrash>
-              <Icon name="delete-forever" color="#715c94" size={30} />
+              <Icon name="delete-forever" color="#7159c1" size={30} />
             </ProductTrash>
           </ProductInfo>
           <ProductOptions>
-            <Text>Teste</Text>
-            <Text>Teste</Text>
+            <ProductActions>
+              <ProductActionsTouch>
+                <Icon name="remove-circle-outline" color="#7159c1" size={30} />
+              </ProductActionsTouch>
+              <ProductActionsInput maxLength={3}>0</ProductActionsInput>
+              <ProductActionsTouch>
+                <Icon name="add-circle-outline" color="#7159c1" size={30} />
+              </ProductActionsTouch>
+            </ProductActions>
+            <ProductActionsPrice>
+              <ProductActionsPriceText>RS 129,90</ProductActionsPriceText>
+            </ProductActionsPrice>
           </ProductOptions>
+          <TotalView>
+            <TotalTitle>TOTAL</TotalTitle>
+            <TotalPrice>R$ 129,29</TotalPrice>
+            <FinalizarBotao>
+              <FinalizarBotaoText>FINALIZAR PEDIDO</FinalizarBotaoText>
+            </FinalizarBotao>
+          </TotalView>
         </CartList>
       </Container>
     );
