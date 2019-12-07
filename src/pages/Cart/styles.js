@@ -58,6 +58,7 @@ export const ProductActionsTouch = styled.TouchableOpacity``;
 
 export const ProductActions = styled.View`
   flex-direction: row;
+  align-items: center;
   height: 30px;
 `;
 
@@ -66,7 +67,7 @@ export const ProductActionsInput = styled.TextInput`
   border-radius: 4px;
   color: #666;
   width: 50px;
-  height: 30px;
+  height: 40px;
   text-align: center;
   margin: 0px 15px;
 `;
