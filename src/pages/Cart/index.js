@@ -30,7 +30,7 @@ import {
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
-function Cart({ cart }) {
+function Cart({ cart, dispatch }) {
   return (
     <Container>
       {cart.length > 0 ? (
@@ -46,7 +46,11 @@ function Cart({ cart }) {
                     <ProductTitle>{item.title}</ProductTitle>
                     <ProductPrice>R${item.price}0</ProductPrice>
                   </ProductDetails>
-                  <ProductTrash>
+                  <ProductTrash
+                    onPress={() =>
+                      dispatch({ type: 'REMOVE_FROM_CART', id: item.id })
+                    }
+                  >
                     <Icon name="delete-forever" color="#7159c1" size={30} />
                   </ProductTrash>
                 </ProductInfo>
