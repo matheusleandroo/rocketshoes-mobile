@@ -111,6 +111,7 @@ Cart.propTypes = {
       amount: PropTypes.number,
     })
   ).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
