@@ -33,7 +33,15 @@ import * as CartActions from '../../store/modules/cart/actions';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
-function Cart({ cart, removeFromCart }) {
+function Cart({ cart, removeFromCart, updateAmount }) {
+  function incremetn(product) {
+    updateAmount(product.id, product.amount + 1);
+  }
+
+  function decremente(product) {
+    updateAmount(product.id, product.amount - 1);
+  }
+
   return (
     <Container>
       {cart.length > 0 ? (
@@ -55,7 +63,7 @@ function Cart({ cart, removeFromCart }) {
                 </ProductInfo>
                 <ProductOptions>
                   <ProductActions>
-                    <ProductActionsTouch>
+                    <ProductActionsTouch onPress={() => decremente(item)}>
                       <Icon
                         name="remove-circle-outline"
                         color="#7159c1"
@@ -65,7 +73,7 @@ function Cart({ cart, removeFromCart }) {
                     <ProductActionsInput maxLength={3}>
                       {item.amount}
                     </ProductActionsInput>
-                    <ProductActionsTouch>
+                    <ProductActionsTouch onPress={() => incremetn(item)}>
                       <Icon
                         name="add-circle-outline"
                         color="#7159c1"
@@ -110,7 +118,8 @@ Cart.propTypes = {
       amount: PropTypes.number,
     })
   ).isRequired,
-  removeFromCart: PropTypes.func,
+  removeFromCart: PropTypes.func.isRequired,
+  updateAmount: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
