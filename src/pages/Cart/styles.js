@@ -2,12 +2,14 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  padding: 15px;
+  padding: 15px 0px;
   background: #191920;
   align-items: center;
 `;
 
-export const CartList = styled.View`
+export const CartList = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+})`
   background: #ffff;
   border-radius: 4px;
   padding: 10px;
@@ -15,7 +17,8 @@ export const CartList = styled.View`
 `;
 
 export const Product = styled.View`
-  min-height: 190px;
+  min-height: 210px;
+  margin: 5px;
 `;
 
 export const ProductInfo = styled.View`
