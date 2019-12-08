@@ -2,6 +2,7 @@ import React from 'react';
 import { YellowBox, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
@@ -28,9 +29,11 @@ import {
   CartEmptyText,
 } from './styles';
 
+import * as CartActions from '../../store/modules/cart/actions';
+
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
-function Cart({ cart, dispatch }) {
+function Cart({ cart, removeFromCart }) {
   return (
     <Container>
       {cart.length > 0 ? (
@@ -46,11 +49,7 @@ function Cart({ cart, dispatch }) {
                     <ProductTitle>{item.title}</ProductTitle>
                     <ProductPrice>R${item.price}0</ProductPrice>
                   </ProductDetails>
-                  <ProductTrash
-                    onPress={() =>
-                      dispatch({ type: 'REMOVE_FROM_CART', id: item.id })
-                    }
-                  >
+                  <ProductTrash onPress={() => removeFromCart(item.id)}>
                     <Icon name="delete-forever" color="#7159c1" size={30} />
                   </ProductTrash>
                 </ProductInfo>
@@ -111,11 +110,14 @@ Cart.propTypes = {
       amount: PropTypes.number,
     })
   ).isRequired,
-  dispatch: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   cart: state.cart,
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
