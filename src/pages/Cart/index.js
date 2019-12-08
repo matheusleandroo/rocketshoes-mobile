@@ -29,11 +29,12 @@ import {
   CartEmptyText,
 } from './styles';
 
+import { formatPrice } from '../../util/format';
 import * as CartActions from '../../store/modules/cart/actions';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
-function Cart({ cart, removeFromCart, updateAmount }) {
+function Cart({ cart, total, removeFromCart, updateAmount }) {
   function incremetn(product) {
     updateAmount(product.id, product.amount + 1);
   }
@@ -55,7 +56,7 @@ function Cart({ cart, removeFromCart, updateAmount }) {
                   <ProductImage source={{ uri: item.image }} />
                   <ProductDetails>
                     <ProductTitle>{item.title}</ProductTitle>
-                    <ProductPrice>R${item.price}0</ProductPrice>
+                    <ProductPrice>{formatPrice(item.price)}</ProductPrice>
                   </ProductDetails>
                   <ProductTrash onPress={() => removeFromCart(item.id)}>
                     <Icon name="delete-forever" color="#7159c1" size={30} />
@@ -82,7 +83,9 @@ function Cart({ cart, removeFromCart, updateAmount }) {
                     </ProductActionsTouch>
                   </ProductActions>
                   <ProductActionsPrice>
-                    <ProductActionsPriceText>RS 129,90</ProductActionsPriceText>
+                    <ProductActionsPriceText>
+                      {item.subtotal}
+                    </ProductActionsPriceText>
                   </ProductActionsPrice>
                 </ProductOptions>
               </Product>
@@ -90,7 +93,7 @@ function Cart({ cart, removeFromCart, updateAmount }) {
             ListFooterComponent={
               <TotalView>
                 <TotalTitle>TOTAL</TotalTitle>
-                <TotalPrice>R$ 129,29</TotalPrice>
+                <TotalPrice>{total}</TotalPrice>
 
                 <FinalizarBotao>
                   <FinalizarBotaoText>FINALIZAR PEDIDO</FinalizarBotaoText>
@@ -120,10 +123,19 @@ Cart.propTypes = {
   ).isRequired,
   removeFromCart: PropTypes.func.isRequired,
   updateAmount: PropTypes.func.isRequired,
+  total: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  cart: state.cart,
+  cart: state.cart.map(product => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0)
+  ),
 });
 
 const mapDispatchToProps = dispatch =>
