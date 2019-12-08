@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
   CartList,
+  Product,
   ProductInfo,
   ProductImage,
   ProductDetails,
@@ -21,51 +23,47 @@ import {
   TotalPrice,
   FinalizarBotao,
   FinalizarBotaoText,
+  CartEmpty,
+  CartEmptyText,
 } from './styles';
 
-export default class Cart extends Component {
-  state = {
-    products: [
-      {
-        id: 1,
-        title: 'Tênis de Caminhada Leve e muito Confortável',
-        price: 179.9,
-        image:
-          'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-      },
-    ],
-  };
-
-  render() {
-    const { products } = this.state;
-
-    return (
-      <Container>
+function Cart({ cart }) {
+  return (
+    <Container>
+      {cart.length > 0 ? (
         <CartList>
-          <ProductInfo>
-            <ProductImage source={{ uri: products[0].image }} />
-            <ProductDetails>
-              <ProductTitle>{products[0].title}</ProductTitle>
-              <ProductPrice>R${products[0].price}0</ProductPrice>
-            </ProductDetails>
-            <ProductTrash>
-              <Icon name="delete-forever" color="#7159c1" size={30} />
-            </ProductTrash>
-          </ProductInfo>
-          <ProductOptions>
-            <ProductActions>
-              <ProductActionsTouch>
-                <Icon name="remove-circle-outline" color="#7159c1" size={30} />
-              </ProductActionsTouch>
-              <ProductActionsInput maxLength={3}>0</ProductActionsInput>
-              <ProductActionsTouch>
-                <Icon name="add-circle-outline" color="#7159c1" size={30} />
-              </ProductActionsTouch>
-            </ProductActions>
-            <ProductActionsPrice>
-              <ProductActionsPriceText>RS 129,90</ProductActionsPriceText>
-            </ProductActionsPrice>
-          </ProductOptions>
+          {cart.map(product => (
+            <Product key={product.id}>
+              <ProductInfo>
+                <ProductImage source={{ uri: product.image }} />
+                <ProductDetails>
+                  <ProductTitle>{product.title}</ProductTitle>
+                  <ProductPrice>R${product.price}0</ProductPrice>
+                </ProductDetails>
+                <ProductTrash>
+                  <Icon name="delete-forever" color="#7159c1" size={30} />
+                </ProductTrash>
+              </ProductInfo>
+              <ProductOptions>
+                <ProductActions>
+                  <ProductActionsTouch>
+                    <Icon
+                      name="remove-circle-outline"
+                      color="#7159c1"
+                      size={30}
+                    />
+                  </ProductActionsTouch>
+                  <ProductActionsInput maxLength={3}>0</ProductActionsInput>
+                  <ProductActionsTouch>
+                    <Icon name="add-circle-outline" color="#7159c1" size={30} />
+                  </ProductActionsTouch>
+                </ProductActions>
+                <ProductActionsPrice>
+                  <ProductActionsPriceText>RS 129,90</ProductActionsPriceText>
+                </ProductActionsPrice>
+              </ProductOptions>
+            </Product>
+          ))}
           <TotalView>
             <TotalTitle>TOTAL</TotalTitle>
             <TotalPrice>R$ 129,29</TotalPrice>
@@ -74,7 +72,21 @@ export default class Cart extends Component {
             </FinalizarBotao>
           </TotalView>
         </CartList>
-      </Container>
-    );
-  }
+      ) : (
+        <CartEmpty>
+          <CartEmptyText>Carrinho Vazio</CartEmptyText>
+        </CartEmpty>
+      )}
+    </Container>
+  );
 }
+
+Cart.propTypes = {
+  cart: PropTypes.arrayOf.isRequired,
+};
+
+const mapStateToProps = state => ({
+  cart: state.cart,
+});
+
+export default connect(mapStateToProps)(Cart);

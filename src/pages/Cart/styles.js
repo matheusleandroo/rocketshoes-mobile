@@ -11,7 +11,11 @@ export const CartList = styled.View`
   background: #ffff;
   border-radius: 4px;
   padding: 10px;
-  min-height: 370px;
+  width: 100%;
+`;
+
+export const Product = styled.View`
+  min-height: 190px;
 `;
 
 export const ProductInfo = styled.View`
@@ -83,7 +87,7 @@ export const ProductActionsPriceText = styled.Text`
 `;
 
 export const TotalView = styled.View`
-  flex: 1;
+  margin-top: 10px;
   justify-content: center;
   align-items: center;
 `;
@@ -112,4 +116,17 @@ export const FinalizarBotaoText = styled.Text`
   font-size: 18px;
   font-weight: bold;
   color: white;
+`;
+
+export const CartEmpty = styled.View`
+  background: #ffff;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+`;
+
+export const CartEmptyText = styled.Text`
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
 `;
