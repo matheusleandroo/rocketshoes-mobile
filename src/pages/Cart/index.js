@@ -59,7 +59,9 @@ function Cart({ cart }) {
                         size={30}
                       />
                     </ProductActionsTouch>
-                    <ProductActionsInput maxLength={3}>0</ProductActionsInput>
+                    <ProductActionsInput maxLength={3}>
+                      {item.amount}
+                    </ProductActionsInput>
                     <ProductActionsTouch>
                       <Icon
                         name="add-circle-outline"
@@ -102,6 +104,7 @@ Cart.propTypes = {
       image: PropTypes.string,
       title: PropTypes.string,
       price: PropTypes.number,
+      amount: PropTypes.number,
     })
   ).isRequired,
 };
