@@ -34,13 +34,13 @@ import * as CartActions from '../../store/modules/cart/actions';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
-function Cart({ cart, total, removeFromCart, updateAmount }) {
+function Cart({ cart, total, removeFromCart, updateAmountRequest }) {
   function incremetn(product) {
-    updateAmount(product.id, product.amount + 1);
+    updateAmountRequest(product.id, product.amount + 1);
   }
 
   function decremente(product) {
-    updateAmount(product.id, product.amount - 1);
+    updateAmountRequest(product.id, product.amount - 1);
   }
 
   return (
@@ -122,7 +122,7 @@ Cart.propTypes = {
     })
   ).isRequired,
   removeFromCart: PropTypes.func.isRequired,
-  updateAmount: PropTypes.func.isRequired,
+  updateAmountRequest: PropTypes.func.isRequired,
   total: PropTypes.string.isRequired,
 };
 
