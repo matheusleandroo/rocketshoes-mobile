@@ -36,10 +36,10 @@ class Home extends Component {
     this.setState({ products: data });
   }
 
-  handleAddProduct = product => {
-    const { addToCart } = this.props;
+  handleAddProduct = id => {
+    const { addToCartRequest } = this.props;
 
-    addToCart(product);
+    addToCartRequest(id);
   };
 
   render() {
@@ -57,7 +57,7 @@ class Home extends Component {
               <ProductImage source={{ uri: item.image }} />
               <ProductTitle>{item.title}</ProductTitle>
               <ProductPrice>{item.priceFormatted}</ProductPrice>
-              <ButtonContainer onPress={() => this.handleAddProduct(item)}>
+              <ButtonContainer onPress={() => this.handleAddProduct(item.id)}>
                 <ButtonIcon>
                   <IconShoppingCart name="shopping-cart" />
                   <IconText>{amount[item.id] || 0}</IconText>
@@ -73,7 +73,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  addToCart: PropTypes.func.isRequired,
+  addToCartRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
