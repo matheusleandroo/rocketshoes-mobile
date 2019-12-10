@@ -5,7 +5,7 @@
 </h3>
 
 <h1 align="center">
-  <img alt="Main" title="Main" src="https://raw.githubusercontent.com/matheusleandroo/rocketshoes-mobile/master/src/assets/images/rocketshoes-mobile-home.png?token=ADHFUDZTDDYW5FXSOCXKWZC553Q7I" width="200px" />
+  <img alt="Main" title="Main" src="https://raw.githubusercontent.com/matheusleandroo/rocketshoes-mobile/master/src/assets/images/rocketshoes-mobile-home.png" width="200px" />
   <img alt="Cart" title="Cart" src="https://raw.githubusercontent.com/matheusleandroo/rocketshoes-mobile/master/src/assets/images/rocketshoes-mobile-cart.png?token=ADHFUD7MJTOUALCBMDHVCHC553RUM" width="200px" />
 </h1>
 
