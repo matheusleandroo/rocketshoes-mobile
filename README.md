@@ -71,6 +71,7 @@ After clone repository, go to folder and follow this steps:
 - Run **`yarn`** to install dependencies;
 - Run **`cd ios`** and **`pod install`**;
 - Run **`cd ..`** and **`react-native run-ios`** to start de aplication;
+- Run **`sudo yarn global add json-server`**;
 - Run **`json-server server.json -p 3333`** in another terminal to start api.
 
 To run Android App, open the simulator (Android Studio or Genymotion) and run **`react-native run-android`**.
@@ -79,6 +80,7 @@ To run Android App, open the simulator (Android Studio or Genymotion) and run **
 
 - Run **`yarn`** to install dependencies;
 - Open the simulator and run **`react-native run-android`** to start de aplication;
+- Run **`sudo yarn global add json-server`**;
 - Run **`json-server server.json -p 3333`** in another terminal to start api.
 
 If the application do not start, run **`react-native start`**.
