@@ -1,6 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -11,7 +11,9 @@ import {
   ItemCount,
 } from './styles';
 
-function Header({ navigation, cartSize }) {
+export default function Header({ navigation }) {
+  const cartSize = useSelector(state => state.cart.length);
+
   return (
     <Container>
       <LogoContainer onPress={() => navigation.navigate('Home')}>
@@ -25,17 +27,8 @@ function Header({ navigation, cartSize }) {
   );
 }
 
-Header.defaultProps = {
-  cartSize: 0,
-};
-
 Header.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
-  cartSize: PropTypes.number,
 };
-
-export default connect(state => ({
-  cartSize: state.cart.length,
-}))(Header);
