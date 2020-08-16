@@ -37,7 +37,7 @@ If you are using Windows:
   <li><a href="https://chocolatey.org/install">Chocolatey</a></li>
   <li><a href="https://facebook.github.io/react-native/docs/getting-started">React Native CLI</a></li>
   <li><a href="https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial">Android SDK</a></li>
-  <li><a href="https://developer.android.com/studio/install?hl=en">Android Studio</a> or <a href="https://docs.genymotion.com/desktop/3.0/01_Get_started/">Genymotion</a></li>  
+  <li><a href="https://developer.android.com/studio/install?hl=en">Android Studio</a> or <a href="https://docs.genymotion.com/desktop/3.0/01_Get_started/">Genymotion</a></li>
 </ul>
 
 If you are using macOS:
@@ -61,6 +61,12 @@ If you are using Linux distributions:
   <li><a href="https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial">Android SDK</a></li>
   <li><a href="https://developer.android.com/studio/install?hl=en">Android Studio</a> or <a href="https://docs.genymotion.com/desktop/3.0/01_Get_started/">Genymotion</a></li>
 </ul>
+
+It is recommended to install the extension ESLint, Prettier, EditorConfig and edit the code editor' settings:
+```
+  "files.eol": "\n",
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+```
 
 ## Deploy
 
